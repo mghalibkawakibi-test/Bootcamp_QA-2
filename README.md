@@ -5,3 +5,4 @@
 5. Affy
 6. Riza
 7. Rikky
+8. Nuruddin
