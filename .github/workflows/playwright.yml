@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: fadhlimaulidri/bootcamp_automation_1:master
+      image: fadhlimaulidri/bootcamp_automation_2a:base
     steps:
     - name: Run Playwright tests
       run: npx playwright test
