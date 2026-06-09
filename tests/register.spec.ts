@@ -1,9 +1,14 @@
 import { test, expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test('User successfullly register unisng valid credential', async ({ page }) => {
   await page.goto('https://www.emra.chat/signup');
+
+  const email = "sdetemail" + Date.now() +"@bayu.com"
+
+
   await page.getByRole('textbox', { name: 'Email' }).click();
-  await page.getByRole('textbox', { name: 'Email' }).fill('fadhli@gmail.com');
+  await page.getByRole('textbox', { name: 'Email' }).fill(email);
   await page.getByRole('textbox', { name: 'Password', exact: true }).click();
   await page.getByRole('textbox', { name: 'Password', exact: true }).fill('tester!3');
   await page.getByRole('textbox', { name: 'Confirm Password' }).click();
