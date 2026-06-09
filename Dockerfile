@@ -10,5 +10,3 @@ RUN npm ci
 USER root
 
 RUN npx playwright install --with-deps
-
-ENV PLAYWRIGHT_BROWSERS_PATH=0
