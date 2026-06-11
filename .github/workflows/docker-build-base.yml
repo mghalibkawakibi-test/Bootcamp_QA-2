@@ -1,26 +1,10 @@
-name: Build Base Docker Image
+name: Test Docker Workflow
 
 on:
   workflow_dispatch:
 
 jobs:
-  build_base:
-    name: 🐳 Build Base Image
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Login to Docker Hub
-        env:
-          DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-          YOUR_REPO_NAME: "bootcamp_automation_2a"
-        run: echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-
-      - name: Build and Push Base Image
-        run: |
-          docker build -t $DOCKERHUB_USERNAME/bootcamp_automation_2a:base .
-          docker push $DOCKERHUB_USERNAME/bootcamp_automation_2a:base
-        env:
-          DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
+      - run: echo "Workflow Docker terdeteksi"
