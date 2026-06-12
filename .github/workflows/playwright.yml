@@ -11,11 +11,11 @@ jobs:
     container:
       image: kawakibi2802/bootcamp_automation_2a:base
     steps:
-     #- name: Checkout Repository
-       #uses: actions/checkout@v4
+     - name: Checkout Repository
+       uses: actions/checkout@v4
 
-     #- name: Install dependencies
-       #run: npm ci
+     - name: Install dependencies
+       run: npm ci
 
      #- name: Install Playwright Browsers
        #run: npx playwright install --with-deps chromium
