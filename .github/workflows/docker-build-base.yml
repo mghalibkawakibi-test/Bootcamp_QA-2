@@ -16,6 +16,7 @@ jobs:
         env:
           DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          YOUR_REPO_NAME: "bootcamp_automation_2a"
         run: |
           echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
 
@@ -23,4 +24,7 @@ jobs:
         env:
           DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
         run: |
-          docker build -t $DOCKERHUB_USERNAME/bootcamp-qa-2:base .
+          docker build -t $DOCKERHUB_USERNAME/$YOUR_REPO_NAME:base .
+          docker push $DOCKERHUB_USERNAME/$YOUR_REPO_NAME:base
+        env:
+          DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
