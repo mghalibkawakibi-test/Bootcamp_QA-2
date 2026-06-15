@@ -16,7 +16,7 @@ test('Successfullly login use valid credential using page object @p0 @login @pos
 test('Successfullly login use valid credential @p0 @login @positive @smoketest', async ({ page }) => {
   
   // precondition
-  await page.goto('https://www.emra.chat/login');
+  await page.goto('/login');
   
   // Step
   await page.getByRole('textbox', { name: 'Email' }).fill('testingemrachat@gmail.com');
@@ -24,11 +24,11 @@ test('Successfullly login use valid credential @p0 @login @positive @smoketest',
   await page.getByRole('button', { name: 'Sign In' }).click();
   
   // Expected result
-  await expect(page.getByRole('heading', { name: 'Emra', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'awwwEmra', exact: true })).toBeVisible();
 });
 
 test('Unsuccessfully login use invalid credential @p1 @login @negative @smoketest', async ({ page }) => {
-  await page.goto('https://www.emra.chat/login');
+  await page.goto('/login');
   await page.getByRole('textbox', { name: 'Email' }).click();
   await page.getByRole('textbox', { name: 'Email' }).fill('testingemrachat@gmail.com');
   await page.getByRole('textbox', { name: 'Password' }).click();
