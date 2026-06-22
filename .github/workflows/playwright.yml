@@ -1,39 +1,74 @@
 name: Playwright Tests
+
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
     container:
-      image: kawakibi2802/bootcamp_automation_2a:base #Artinya playwright test akan menjalankan test menggunakan docker image
+      image: kawakibi2802/bootcamp_automation_2a:base
+
     steps:
-     - name: Checkout Repository
-       uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-     - name: Install dependencies
-       run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-     - name: Install Playwright Browsers
-       run: npx playwright install --with-deps chromium
-       env:
-         PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
 
-     - name: Run Playwright tests
-       run: npx playwright test
-       env:
-             PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
-             BASE_URL: ${{ secrets.BASE_URL }}
-             AGENTQ_EMAIL: ${{ secrets.AGENTQ_EMAIL }}
-             AGENTQ_PASSWORD: ${{ secrets.AGENTQ_PASSWORD }}
-             AGENTQ_PROJECT_ID: ${{ secrets.AGENTQ_PROJECT_ID }}
-             AGENTQ_TESTRUN_ID: ${{ secrets.AGENTQ_TESTRUN_ID }}
-     - uses: actions/upload-artifact@v4
-       if: ${{ !cancelled() }}
-       with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      - name: Debug Environment
+        run: |
+          echo "=== ENV CHECK ==="
+
+          if [ -z "$BASE_URL" ]; then
+            echo "BASE_URL KOSONG"
+          else
+            echo "BASE_URL TERISI"
+          fi
+
+          if [ -z "$AGENTQ_EMAIL" ]; then
+            echo "AGENTQ_EMAIL KOSONG"
+          else
+            echo "AGENTQ_EMAIL TERISI"
+          fi
+
+          if [ -z "$AGENTQ_PASSWORD" ]; then
+            echo "AGENTQ_PASSWORD KOSONG"
+          else
+            echo "AGENTQ_PASSWORD TERISI"
+          fi
+
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          AGENTQ_EMAIL: ${{ secrets.AGENTQ_EMAIL }}
+          AGENTQ_PASSWORD: ${{ secrets.AGENTQ_PASSWORD }}
+
+      - name: Run Playwright Tests
+        run: npx playwright test
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+
+          BASE_URL: ${{ secrets.BASE_URL }}
+
+          AGENTQ_EMAIL: ${{ secrets.AGENTQ_EMAIL }}
+          AGENTQ_PASSWORD: ${{ secrets.AGENTQ_PASSWORD }}
+          AGENTQ_PROJECT_ID: ${{ secrets.AGENTQ_PROJECT_ID }}
+          AGENTQ_TESTRUN_ID: ${{ secrets.AGENTQ_TESTRUN_ID }}
+
+      - name: Upload Playwright Report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
