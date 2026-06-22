@@ -31,9 +31,6 @@ jobs:
              AGENTQ_PASSWORD: ${{ secrets.AGENTQ_PASSWORD }}
              AGENTQ_PROJECT_ID: ${{ secrets.AGENTQ_PROJECT_ID }}
              AGENTQ_TESTRUN_ID: ${{ secrets.AGENTQ_TESTRUN_ID }}
-      - name: Debug ENV
-        run: |
-          echo "BASE_URL=$BASE_URL"
      - uses: actions/upload-artifact@v4
        if: ${{ !cancelled() }}
        with:
