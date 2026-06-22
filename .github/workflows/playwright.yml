@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: kawakibi2802/bootcamp_automation_2a:base
+      image: kawakibi2802/bootcamp_automation_2a:base #Artinya playwright test akan menjalankan test menggunakan docker image
     steps:
      - name: Checkout Repository
        uses: actions/checkout@v4
@@ -25,7 +25,12 @@ jobs:
      - name: Run Playwright tests
        run: npx playwright test
        env:
-         PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+             PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+             BASE_URL: ${{ secrets.BASE_URL }}
+             AGENTQ_EMAIL: ${{ secrets.AGENTQ_EMAIL }}
+             AGENTQ_PASSWORD: ${{ secrets.AGENTQ_PASSWORD }}
+             AGENTQ_PROJECT_ID: ${{ secrets.AGENTQ_PROJECT_ID }}
+             AGENTQ_TESTRUN_ID: ${{ secrets.AGENTQ_TESTRUN_ID }}
      - uses: actions/upload-artifact@v4
        if: ${{ !cancelled() }}
        with:
