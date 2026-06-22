@@ -34,8 +34,6 @@ jobs:
       - name: Debug ENV
         run: |
           echo "BASE_URL=$BASE_URL"
-        env:
-          BASE_URL: ${{ secrets.BASE_URL }}
      - uses: actions/upload-artifact@v4
        if: ${{ !cancelled() }}
        with:
