@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "email": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "role": {
+              "type": "string",
+              "minLength": 1
+            },
+            "status": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "id",
+            "email",
+            "name",
+            "role",
+            "status"
+          ]
+        },
+        "tokens": {
+          "type": "object",
+          "properties": {
+            "access_token": {
+              "type": "string",
+              "minLength": 1
+            },
+            "refresh_token": {
+              "type": "string",
+              "minLength": 1
+            },
+            "expires_at": {
+              "type": "string",
+              "minLength": 1
+            },
+            "refresh_expires_at": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "access_token",
+            "refresh_token",
+            "expires_at",
+            "refresh_expires_at"
+          ]
+        },
+        "feature_flags": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      },
+      "required": [
+        "user",
+        "tokens",
+        "feature_flags"
+      ]
+    }
+  },
+  "required": [
+    "success",
+    "message",
+    "data"
+  ]
+}

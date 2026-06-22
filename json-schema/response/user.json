@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "data": {
+    "user": {
+      "id": 1,
+      "email": "user@example.com",
+      "name": "John Updated",
+      "role": "owner",
+      "status": "active",
+      "phone_number": "+628987654321",
+      "country": "Indonesia",
+      "country_code": "+62",
+      "whatsapp": "+628987654321"
+    },
+    "feature_flags": {}
+  },
+  "message": "Profile updated successfully"
+}

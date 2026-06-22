@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "email": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "phone_number": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "country_code": {
+              "type": "string"
+            },
+            "whatsapp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "email",
+            "name",
+            "role",
+            "status",
+            "phone_number",
+            "country",
+            "country_code",
+            "whatsapp"
+          ]
+        },
+        "feature_flags": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "user",
+        "feature_flags"
+      ]
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "success",
+    "data",
+    "message"
+  ]
+}

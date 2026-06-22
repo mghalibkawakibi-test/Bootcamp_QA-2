@@ -1,0 +1,10 @@
+{
+  "valid_user": {
+    "email": "testingemrachat@gmail.com",
+    "password": "tester!3"
+  },
+  "invalid_user": {
+    "email": "sdet_regular@yopmail.com",
+    "password": "Tester!23"
+  }
+}
